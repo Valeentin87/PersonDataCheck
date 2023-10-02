@@ -7,6 +7,7 @@
 номертелефона - целое беззнаковое число без форматирования
 пол - символ латиницей f или m.'''
 from check_data import *
+from Person import *
 
 flag = True
 while flag:
@@ -42,8 +43,10 @@ while flag:
         print(e)
 
 name_person = check_name(person_data_list.copy(), check_phone_number(person_data_list),check_date_of_birth(person_data_list), \
-                 check_gender(person_data_list), check_surname(person_data_list), check_patronymic(person_data_list))  
-
+                 check_gender(person_data_list), check_surname(person_data_list), check_patronymic(person_data_list))
+firt_Person =  Person(check_surname(person_data_list)[0],name_person[0],check_patronymic(person_data_list)[0],check_phone_number(person_data_list)[0], \
+                      check_date_of_birth(person_data_list)[0],check_gender(person_data_list)[0]) 
+print(firt_Person)
 '''
 print(check_phone_number(person_data_list))
 print(check_date_of_birth(person_data_list))
