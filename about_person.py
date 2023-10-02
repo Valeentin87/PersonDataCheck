@@ -10,7 +10,7 @@ flag = True
 while flag:
     try:
         #person_data = input('введите через пробел следующие данные о себе: Фамилия Имя Отчество датарождения номертелефона пол и нажмите Enter: ')
-        person_data = "Иванов Иван Иванович 89131840501 23.01.2014 fo"
+        person_data = "Иванов Иван Иванович 89131840501 23.01.2014 f"
         if person_data == "":
             raise Exception("вы не ввели данные!!! Попробуйте снова!!!")
         person_data_list = person_data.split()
@@ -50,7 +50,15 @@ def check_gender(data_person):
             return data, True
     return "во введенных данных отсутствуют данные о гендерной принадлежности, либо они введены не верно!!! "
 
+def check_surname(data_person):
+    for data in data_person:
+        if data.isalpha() and (data[-2:] in ['ан', 'ын', 'ин', 'их', 'ов', 'ев', 'ой', 'ой', 'их', 'ых']):
+            return data.capitalize(), True
+    return "Фамилии во введенных данных не обнаружено!!! ", False
+
+
 print(check_phone_number(person_data_list))
 print(check_date_of_birth(person_data_list))
 print(check_gender(person_data_list))
-    
+print(check_surname(person_data_list))
+
