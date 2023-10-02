@@ -56,9 +56,30 @@ def check_surname(data_person):
             return data.capitalize(), True
     return "Фамилии во введенных данных не обнаружено!!! ", False
 
+def check_patronymic(data_person):
+    for data in data_person:
+        if data.isalpha() and (data[-2:] in ['ич', 'на']):
+            return data.capitalize(), True
+    return "Отчества во введенных данных не обнаружено!!! ", False
+
+set_data_person = set()
+
+
+
+def check_name(list, *args):
+    for n in args:
+        if n[1] == True:
+            list.remove(n[0])
+    return list
+   
+
 
 print(check_phone_number(person_data_list))
 print(check_date_of_birth(person_data_list))
 print(check_gender(person_data_list))
 print(check_surname(person_data_list))
+print(check_patronymic(person_data_list))
 
+print(check_name(person_data_list.copy(), check_phone_number(person_data_list),check_date_of_birth(person_data_list), \
+                 check_gender(person_data_list), check_surname(person_data_list), check_patronymic(person_data_list)))
+print(person_data_list)
