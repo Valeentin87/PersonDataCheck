@@ -13,8 +13,8 @@ def check_data_of_person():
     flag = True
     while flag:
         try:
-            #person_data = input('введите через пробел следующие данные о себе: Фамилия Имя Отчество датарождения номертелефона пол и нажмите Enter: ')
-            person_data = "Алла Пецина Александровна 8913184051  f 23.07.2012 "
+            person_data = input('введите через пробел следующие данные о себе: Фамилия Имя Отчество дата рождения номер телефона пол и нажмите Enter: ')
+            #person_data = "Алла Пецина Александровна 8913184051  f 23.07.2012 "
             if person_data == "":
                 raise Exception("вы не ввели данные!!! Попробуйте снова!!!")
             person_data_list = person_data.split()
@@ -38,14 +38,13 @@ def check_data_of_person():
             
             else: 
                 print("Вы ввели корректные данные, спасибо!!!")
-
+                flag = False
                 name_person = check_name(person_data_list.copy(), check_phone_number(person_data_list),check_date_of_birth(person_data_list), \
                     check_gender(person_data_list), check_surname(person_data_list, check_gender(person_data_list)[0]), check_patronymic(person_data_list, check_gender(person_data_list)[0]))
                 
                 return  Person(check_surname(person_data_list,check_gender(person_data_list)[0])[0],name_person[0],check_patronymic(person_data_list, check_gender(person_data_list)[0])[0],check_phone_number(person_data_list)[0], \
                         check_date_of_birth(person_data_list)[0],check_gender(person_data_list)[0]) 
-                print(firt_Person)
-                flag = False
+                
             
             
         except Exception as e:
