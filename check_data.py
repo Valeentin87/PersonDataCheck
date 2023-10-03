@@ -19,16 +19,32 @@ def check_gender(data_person):
             return data, True
     return "во введенных данных отсутствуют данные о гендерной принадлежности, либо они введены не верно!!! "
 
-def check_surname(data_person):
+def check_surname(data_person, gender_flag):
     for data in data_person:
-        if data.isalpha() and (data[-2:] in ['ан', 'ын', 'ин', 'их', 'ов', 'ев', 'ой', 'ой', 'их', 'ых']):
-            return data.capitalize(), True
+        if gender_flag == 'm':
+            if data.isalpha() and (data[-2:] in ['ан', 'ын', 'ин', 'ов', 'ев', 'их', 'ых']):
+                return data.capitalize(), True
+            elif data.isalpha() and (data[-4:] in ['ских', 'ской', 'цкой']):
+                return data.capitalize(), True
+        elif gender_flag == 'f':
+            if data.isalpha() and (data[-3:] in ['ана', 'ына', 'ина', 'ова', 'ева']):
+                return data.capitalize(), True
+            elif data.isalpha() and (data[-4:] in ['ская', 'цкая']):
+                return data.capitalize(), True
     return "Фамилии во введенных данных не обнаружено!!! ", False
 
-def check_patronymic(data_person):
+def check_patronymic(data_person, gender_flag):
     for data in data_person:
-        if data.isalpha() and (data[-2:] in ['ич', 'на']):
-            return data.capitalize(), True
+        if gender_flag == 'm':
+            if data.isalpha() and (data[-4:] in ['ович', 'евич', 'ич']):
+                return data.capitalize(), True
+            elif data.isalpha() and (data[-2:] in ['ич']):
+                return data.capitalize(), True
+        elif gender_flag == 'f':
+            if data.isalpha() and (data[-4:] in ['овна', 'евна', 'ична']):
+                return data.capitalize(), True
+            elif data.isalpha() and (data[-5:] in ['инична']):
+                return data.capitalize(), True    
     return "Отчества во введенных данных не обнаружено!!! ", False
 
 set_data_person = set()
