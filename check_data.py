@@ -27,7 +27,7 @@ def check_surname(data_person, gender_flag):
             elif data.isalpha() and (data[-4:] in ['ских', 'ской', 'цкой']):
                 return data.capitalize(), True
         elif gender_flag == 'f':
-            if data.isalpha() and (data[-3:] in ['ана', 'ына', 'ина', 'ова', 'ева']):
+            if data.isalpha() and (data[-3:] in ['ана', 'ына', 'ина', 'ова', 'ева', 'ёва']):
                 return data.capitalize(), True
             elif data.isalpha() and (data[-4:] in ['ская', 'цкая']):
                 return data.capitalize(), True

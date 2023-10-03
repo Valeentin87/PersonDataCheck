@@ -8,6 +8,7 @@
 пол - символ латиницей f или m.'''
 from check_data import *
 from Person import *
+from save_file import save_person
 
 def check_data_of_person():
     flag = True
@@ -34,23 +35,23 @@ def check_data_of_person():
             elif check_phone_number(person_data_list)[1] == False:
                 raise Exception("Во входных данных не корректный номер телефона")
             elif check_surname(person_data_list, check_gender(person_data_list)[0])[1] == False:
-                raise Exception("Во вхожных данных не корректная фамилия!!! ")
+                raise Exception("Во входных данных не корректная фамилия!!! ")
             
             else: 
                 print("Вы ввели корректные данные, спасибо!!!")
                 flag = False
                 name_person = check_name(person_data_list.copy(), check_phone_number(person_data_list),check_date_of_birth(person_data_list), \
                     check_gender(person_data_list), check_surname(person_data_list, check_gender(person_data_list)[0]), check_patronymic(person_data_list, check_gender(person_data_list)[0]))
-                
-                return  Person(check_surname(person_data_list,check_gender(person_data_list)[0])[0],name_person[0],check_patronymic(person_data_list, check_gender(person_data_list)[0])[0],check_phone_number(person_data_list)[0], \
+                person = Person(check_surname(person_data_list,check_gender(person_data_list)[0])[0],name_person[0],check_patronymic(person_data_list, check_gender(person_data_list)[0])[0],check_phone_number(person_data_list)[0], \
                         check_date_of_birth(person_data_list)[0],check_gender(person_data_list)[0]) 
-                
+                save_person(person)
+                return person
             
             
         except Exception as e:
             print(e)
 
-check_data_of_person()    
+   
 
 
 
